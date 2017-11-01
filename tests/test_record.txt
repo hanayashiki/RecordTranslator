@@ -1,0 +1,13 @@
+TYPE foo = RECORD
+    a:INTEGER;
+    b:BOOLEAN;
+    c:REAL;
+    d:CHAR
+END;
+
+TYPE foo2 = RECORD
+    ab:INTEGER;
+    bc:BOOLEAN;
+    cd:REAL;
+    de2:CHAR
+END;
