@@ -37,7 +37,13 @@ class Lexer:
         elif self.char == "=":
             self.symbol = "EQ"
         elif self.char == ":":
-            self.symbol = "COLON"
+            self.getchar()
+            if self.char == "=":
+                self.symbol = "ASSIGN"
+            else:
+                self.retract()
+                self.symbol = "COLON"
+
         elif self.char == "+":
             self.symbol = "ADD"
         elif self.char == "*":
@@ -56,9 +62,18 @@ class Lexer:
                 self.token += self.char
                 self.getchar()
             self.retract()
+        elif self.char.isnumeric():
+            self.symbol = "INTEGER"
+            self.token += self.char
+            self.getchar()
+            while self.char.isdigit():
+                tried = True
+                self.token += self.char
+                self.getchar()
+            self.retract()
+            self.num = eval(self.token)
         elif self.char == "$":
             self.symbol = "EOF"
-            self.token = ""
         else:
             raise Exception("Lexical Error", self.srcpos)
 

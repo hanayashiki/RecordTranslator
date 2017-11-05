@@ -27,9 +27,15 @@ class Symboller:
             sym.addr = self.tkn2addr[sym.token]
             return sym
 
+    def fetch_sym(self, token):
+        for sym in self.syms:
+            if sym.token == token:
+                return sym
+        return None
+
 
 class Symbol:
-    token = ""
+    token = "Default"
     addr = -1
     stype = None
 
@@ -38,3 +44,7 @@ class Symbol:
 
     def __hash__(self):
         return self.token.__hash__()
+
+    def __str__(self):
+        string = self.token + ": " + str(self.stype)
+        return string

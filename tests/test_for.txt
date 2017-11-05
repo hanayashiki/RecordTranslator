@@ -1,0 +1,4 @@
+VAR a:INTEGER;
+for a:= 1 to 5 by 3 do
+    statements;
+end for;

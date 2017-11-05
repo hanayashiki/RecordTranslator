@@ -22,6 +22,7 @@ design
 from lexer import *
 from symboller import *
 from printer import *
+from labeller import *
 
 SE = "Syntax Error"
 
@@ -30,10 +31,12 @@ class Syntax:
     lexer_obj = Lexer("text.txt")
     tokener_obj = Symboller()
     printer_obj = Printer()
+    labeller_obj = Labeller()
 
     def __init__(self):
         self.tokener_obj = Symboller()
         self.printer_obj = Printer()
+        self.labeller_obj = Labeller()
 
     def parse(self, file_addr):
         self.lexer_obj = Lexer(file_addr)
@@ -89,5 +92,20 @@ class Syntax:
             return sym_self
         else:
             raise Exception(SE)
+
+    def push_i(self, i):
+        self.printer_obj.emit("LOADI", i)
+
+    def push(self, token):
+        self.printer_obj.emit("LOAD", "(" + token + ")")
+
+    def store_in(self):
+        self.printer_obj.emit("STOREIN")
+
+    def label_emit(self, label):
+        self.printer_obj.emit(label + ':')
+
+    def load_id(self, sym):
+        self.printer_obj.emit("LOAD", sym.token)
 
 

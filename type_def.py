@@ -19,7 +19,7 @@ class SimpleType:
         self.size = name2size[name]
 
     def __str__(self):
-        return ("{type :" + self.name + "," + "size: "+ str(self.size) + "}")
+        return ("{type: " + self.name + ", " + "size: "+ str(self.size) + "}")
 
 
 class ArrayType:
@@ -33,6 +33,7 @@ class ArrayType:
         self.size = atype.size
         for d in dimensions:
             self.size *= d
+
 
 
 class RecordType:
