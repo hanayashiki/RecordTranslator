@@ -1,0 +1,4 @@
+VAR i:INTEGER;
+for i := 1 to n by z do
+    statements;
+end for;
